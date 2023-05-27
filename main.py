@@ -17,7 +17,7 @@ db = mongo.db
 
 @app.route('/')
 def index():
-    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
+    return jsonify({"Choo Choo": "Welcome to your Checo app 🚅"})
 
 @app.route("/api/driver/", methods=["POST", "GET"])
 def create_driver():
