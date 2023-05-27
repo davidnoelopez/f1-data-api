@@ -10,6 +10,10 @@ from matplotlib.figure import Figure
 import bson.json_util as json_util
 
 app = Flask(__name__)
+app.config.from_object('config.Config')
+mongo = PyMongo(app, uri=app.config["MONGO_URI"])
+print("Connected to MongoDB")
+db = mongo.db
 
 @app.route('/')
 def index():
@@ -60,8 +64,4 @@ def lap_plot():
 
 
 if __name__ == '__main__':
-    app.config.from_object('config.Config')
-    mongo = PyMongo(app, uri=app.config["MONGO_URI"])
-    print("Connected to MongoDB")
-    db = mongo.db
     app.run(debug=app.config["DEBUG"], port=app.config["PORT"])
